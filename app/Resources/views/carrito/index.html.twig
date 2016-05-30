@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Carrito list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Monto</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for carrito in carritos %}
+            <tr>
+                <td><a href="{{ path('carrito_show', { 'id': carrito.id }) }}">{{ carrito.id }}</a></td>
+                <td>{{ carrito.monto }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('carrito_show', { 'id': carrito.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('carrito_edit', { 'id': carrito.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('carrito_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

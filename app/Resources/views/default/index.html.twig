@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <a href="{{ path('carrito_productos') }}">Mi Carrito</a>
+    <h1>Producto list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Cortadesc</th>
+                <th>Completadesc</th>
+                <th>Precio</th>
+                <th>Actions</th>
+                <th>Agregar al carrito</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for producto in productos %}
+            <tr>
+                <td><a href="{{ path('admin_producto_show', { 'id': producto.id }) }}">{{ producto.id }}</a></td>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.cortadesc }}</td>
+                <td>{{ producto.completadesc }}</td>
+                <td>{{ producto.precio }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_producto_show', { 'id': producto.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('carrito_addproduct', { 'id': producto.id }) }}">Agregar al carrito</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
